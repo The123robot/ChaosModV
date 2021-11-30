@@ -46,7 +46,7 @@ static void OnTick()
 				std::vector<Ped> peds;
 				std::vector<Entity> props;
 
-				Entity thing;
+				Entity thing = 0;
 				
 				switch(objType)
 				{
@@ -95,11 +95,6 @@ static void OnTick()
 						//has to be done after ped is teleported or 'APPLY_FORCE' doesn't work
 						CLEAR_PED_TASKS_IMMEDIATELY(thing);
 						SET_PED_TO_RAGDOLL(thing, 2000, 2000, 0, 1, 1, 0);
-					}
-					if (GET_ENTITY_TYPE(thing) == 3)
-					{
-						//prevent non-moveable objects cluttering up important areas
-						SET_OBJECT_AS_NO_LONGER_NEEDED(&thing);
 					}
 					APPLY_FORCE_TO_ENTITY_CENTER_OF_MASS(thing, 1, .0f, 1000.f, 0.f, false, true, true, false);
 				}
